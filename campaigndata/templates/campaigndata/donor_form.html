@@ -1,0 +1,10 @@
+{% extends "base_generic_hero_form.html" %}
+{% load campaigndata_extras %}
+
+{% block hero_title %}
+Add a {{ form | to_class_name }}
+{% endblock hero_title %}
+
+{% block hero_text %}
+Insert a {{ form | to_class_name }} into the database.
+{% endblock hero_text %}

@@ -1,0 +1,27 @@
+{% extends "base_generic_hero.html" %}
+
+{% block title %}<title>Campaign Data</title>{% endblock %}
+
+{% block hero_title %}Campaign Data{% endblock hero_title %}
+
+{% block hero_text %}Track donors and donations in a simple and easy-to-use format.{% endblock hero_text %}
+
+{% block content %}
+
+    <div class='row justify-content-sm-center'>
+        <div class='col-md-4'>
+          <h2>Database Overview</h2>
+          <p>The database has the following record counts:</p>
+          <ul>
+            <li><strong>Donations:</strong> {{ num_donations }}</li>
+            <li><strong>Total Donations:</strong> ${{ total_amount_donated }}</li>
+            <li><strong>Total Donors:</strong> {{ num_donors }}</li>
+            <li><strong>Biggest Donor:</strong> <a href="{{ max_donor.get_absolute_url }}">{{ max_donor.first_name}} {{ max_donor.last_name}}</a> (${{max_donor.max_value|floatformat:2}})</li>
+          </ul>
+          <p>
+              You have visited this site {{ num_visits }} {% if num_visits == 1 %}time {% else %} times {% endif%}
+          </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

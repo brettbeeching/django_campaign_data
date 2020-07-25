@@ -1,0 +1,20 @@
+{% extends "base_generic_hero.html" %}
+
+{% block hero_title %}{% endblock hero_title %}
+
+{% block hero_text %}{% endblock hero_text %}
+
+{% block content %}
+<div class='row justify-content-sm-center'>
+  <form class="shadow p-3 mb-5 bg-white rounded" action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <hr>
+    <div class='text-center'>
+        <input class='btn btn-primary' type="submit" value="Submit">
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base_generic_hero.html" %}
+
+{% block hero_title %}All Organizations{% endblock hero_title %}
+
+{% block hero_text %}See the organizations contributing to the campaign.{% endblock hero_text %}
+
+{% block content %}
+  {% if object_list %}
+  <ul>
+    {% for object in object_list %}
+      <div class="shadow p-3 mb-5 bg-white rounded"  style="margin-left:10px;margin-top:20px">
+        <h4>Donor: <a href="{{object.get_absolute_url }}">{{ object.name }}</a></h4>
+        <h6>
+          Total donations: ${% if object.total_donations %}{{ object.total_donations|floatformat:2 }}
+        {% else %}0.00{% endif %}
+        </h6>
+        <h6>
+          Total members: {{object.donor_set.all.count}}
+        </h6>
+      </div>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no Organization donors.</p>
+  {% endif %}       
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class='container-fluid'>
+    <div class='row'>
+      <h1 class='' style="display: inline-block;">
+        Organization: {{organization.name}}
+      </h1>
+      <a href="{% url 'organization-update' organization.pk %} " class="btn btn-m active" role="button" aria-pressed="true">Edit</a>
+      <a href="{% url 'organization-delete' organization.pk %} " class="btn btn-m active" role="button" aria-pressed="true">Delete</a>
+    </div>
+  </div>
+  <a href="{% url 'donation-create' %} " class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Donation</a>
+ 
+  <div>
+    <h4>Donations</h4>
+    <h6>
+    Total: ${{ organization.total_donations|floatformat:2 }}</h6>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">Donation Amount</th>
+            <th scope="col">Donor Name</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">{{organization.name}} Member</th>
+
+        </thead>
+        <tbody>
+        {% for donation in organization.donation_set.all %}
+            <tr>
+            <th>{{donation.donation_amount}}</th>
+            <td><a href="{{ donation.donor.get_absolute_url }}">{{donation.donor}}</a></td>
+            <td>{{donation.donor.email}}</td>
+            {% if donation.donor in organization.donor_set.all %}
+            <td>Yes</td> 
+            {% else %} <td>No</td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+    <h6>Organization Members</h6>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Member Name</th>
+          <th scope="col">Member Address</th>
+          <th scope="col">Email Address</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for member in organization.donor_set.all %}
+        <tr>
+          <td><a href="{{ member.get_absolute_url }}">{{member}}</a></td>
+          <td>{{member.address_set.first}}</td>
+          <td>{{member.email}}</td>
+        </tr>
+    {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+
+
+
+  
+    
+  

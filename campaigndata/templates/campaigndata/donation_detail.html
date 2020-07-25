@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Donation Detail</h1> 
+
+ 
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Donor: <a href="{{ donation.donor.get_absolute_url }}"> {{donation.donor.last_name}}, {{ donation.donor.first_name}}</a> </h4>
+    <h6>Donation Amount: ${{ donation.donation_amount|floatformat:2 }}</h6>
+    <p>
+      Donation date: {{ donation.donation_date}}
+    </p>
+  </div>
+{% endblock %}

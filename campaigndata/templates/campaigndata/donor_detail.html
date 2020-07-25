@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class='container-fluid'>
+    <div class='row'>
+      <h1 class='' style="display: inline-block;">
+        Donor: {{donor.last_name}}, {{ donor.first_name}}
+      </h1>
+      <a href="{% url 'donor-update' donor.pk %} " class="btn btn-m active" role="button" aria-pressed="true">Edit</a>
+      <a href="{% url 'donor-delete' donor.pk %} " class="btn btn-m active" role="button" aria-pressed="true">Delete</a>
+    </div>
+</div>
+
+<div class='container-fluid'
+  <p>
+    {{ donor.email }}
+  </p>
+
+  {% if donor.marriage_set.first %}
+  <p>Spouse: {{ donor.marriage_set.first}}</p>
+  {% endif %}
+
+  <p>Date of Birth: {{ donor.date_of_birth }} (Age {{ donor.age }})</p>
+  <p>
+    Address: {{ donor.address_set.first }}
+  </p>
+  <a href="{% url 'donation-create-default' donor.pk %} " class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Donation</a>
+ 
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Donations</h4>
+    <h6>Total: ${{ donor.total_donations|floatformat:2 }}</h6>
+
+    {% for donation in donor.donation_set.all %}
+      <hr>
+      <ul>
+        <li>
+          Donation date: {{ donation.donation_date }}
+        </li>
+        <li>
+          <a href="{{ donation.get_absolute_url }}">Donation Amount: ${{ donation.donation_amount }}</a>
+        </li>
+        
+      </ul>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

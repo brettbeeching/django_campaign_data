@@ -1,0 +1,24 @@
+{% extends "base_generic_hero.html" %}
+
+{% block hero_title %}All Donations{% endblock hero_title %}
+
+{% block hero_text %}See the campaign donations at a glance.{% endblock hero_text %}
+
+{% block content %}
+  {% if object_list %}
+  <ul>
+    {% for donation in object_list %}
+      <div class="shadow p-3 mb-5 bg-white rounded" style="margin-left:10px;margin-top:20px">
+        <h4>Donation Amount: <a href="{{donation.get_absolute_url }}">${{ donation.donation_amount|floatformat:2 }}</a></h4>
+        <h6>Donor: <a href="{{ donation.donor.get_absolute_url }}"> {{donation.donor.last_name}}, {{ donation.donor.first_name}}</a> </h6>
+        
+        <p>
+          Donation date: {{ donation.donation_date}}
+        </p>
+      </div>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no Donors in the database.</p>
+  {% endif %}       
+{% endblock %}

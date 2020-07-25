@@ -1,0 +1,10 @@
+{% extends "base_generic_hero_form.html" %}
+{% load campaigndata_extras %}
+
+{% block hero_title %}
+Edit {{ form | to_class_name }}
+{% endblock hero_title %}
+
+{% block hero_text %}
+Edit {{ form | to_class_name }} record in the database.
+{% endblock hero_text %}
