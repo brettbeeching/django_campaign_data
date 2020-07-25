@@ -27,7 +27,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['political-campaign-data.herokuapp.com', '127.0.0.1]
+ALLOWED_HOSTS = ['political-campaign-data.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
