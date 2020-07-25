@@ -48,7 +48,7 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
-class DonationListView(LoginRequiredMixin, generic.ListView):
+class DonationListView(generic.ListView): #LoginRequiredMixin
     model = Donation
     paginate_by = 5
 
@@ -85,11 +85,11 @@ class OrganizationDetailView(generic.DetailView):
     queryset = Organization.objects.annotate(total_donations=Sum('donation__donation_amount'))
     paginate_by = 10
 
-class DonorCreate(PermissionRequiredMixin, CreateView):
+class DonorCreate(CreateView): #PermissionRequiredMixin
     model = Donor
     fields = "__all__"
     #initial = {'date_of_death': '05/25/1998'}
-    permission_required = ''
+    #permission_required = ''
 
 
 class DonationCreateDefault(CreateView):
@@ -106,10 +106,10 @@ class DonationCreateDefault(CreateView):
             return
 
 
-class OrganizationCreate(PermissionRequiredMixin, CreateView):
+class OrganizationCreate(CreateView):
     model = Organization
     fields = "__all__"
-    permission_required = ''
+    #permission_required = ''
 
     def get_success_url(self):
         '''Example of how to redirect on success'''
