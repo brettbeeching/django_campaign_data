@@ -76,10 +76,6 @@ class Marriage(models.Model):
 
 class Address(models.Model):
     '''Model representing an address.'''
-    name = models.CharField(
-        "Full name",
-        max_length=1024,
-    )
 
     address1 = models.CharField(
         "Address line 1",
