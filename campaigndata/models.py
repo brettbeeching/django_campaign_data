@@ -62,16 +62,16 @@ class Organization(models.Model):
         return f'{self.name}'
 
 
-class Marriage(models.Model):
-    spouse1 = models.ForeignKey(Donor, on_delete=models.CASCADE, blank=False, related_name='spouse1')
-    spouse2 = models.ForeignKey(Donor, on_delete=models.CASCADE, blank=False, related_name='spouse2')
-    active_marriage = models.BooleanField(default=True, blank=False)
+# class Marriage(models.Model):
+#     spouse1 = models.ForeignKey(Donor, on_delete=models.CASCADE, blank=False, related_name='spouse1')
+#     spouse2 = models.ForeignKey(Donor, on_delete=models.CASCADE, blank=False, related_name='spouse2')
+#     active_marriage = models.BooleanField(default=True, blank=False)
 
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['spouse1', 'spouse2'],
-                name='unique_marriage')
-        ]
+#     class Meta:
+#         constraints = [
+#             models.UniqueConstraint(fields=['spouse1', 'spouse2'],
+#                 name='unique_marriage')
+#         ]
 
 
 class Address(models.Model):

@@ -20,7 +20,11 @@ def index(request):
     # Generate counts of some of the main objects
     num_donations = Donation.objects.all().count()
     num_donors = Donor.objects.all().count()
-    total_amount_donated = round(Donation.objects.all().aggregate(sum_donations=Sum('donation_amount'))['sum_donations'],2)
+    total_amount_donated = Donation.objects.all().aggregate(sum_donations=Sum('donation_amount'))['sum_donations']
+    try:
+        total_amount_donated = round(total_amount_donated, 2)
+    except TypeError:
+        total_amount_donated = 0
     donors_with_total_donations = Donor.objects.annotate(max_value=Sum('donation__donation_amount'))
     max_donor = donors_with_total_donations[0]
     #Guarantee the first donor's record total donation value is not None.

@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Donor, PhoneNumber, Address, Marriage, Organization, Donation
+from .models import Donor, PhoneNumber, Address, Organization, Donation #Marriage
 
 admin.site.register(PhoneNumber)
 admin.site.register(Address)
-admin.site.register(Marriage)
+#  admin.site.register(Marriage)
 
 class PhoneInline(admin.TabularInline):
     model = PhoneNumber
@@ -21,10 +21,10 @@ class AddressInlineOrganization(admin.StackedInline):
     exclude = ('donor',)
 
 
-class MarriageInline(admin.TabularInline):
-    model = Marriage
-    fk_name = 'spouse2'
-    extra=0
+# class MarriageInline(admin.TabularInline):
+#     model = Marriage
+#     fk_name = 'spouse2'
+#     extra=0
 
 @admin.register(Organization)
 class OrganizationInline(admin.ModelAdmin):
@@ -33,7 +33,7 @@ class OrganizationInline(admin.ModelAdmin):
 @admin.register(Donor)
 class DonorAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name',  'email',)
-    inlines = [AddressInlineDonor, PhoneInline, MarriageInline]
+    inlines = [AddressInlineDonor, PhoneInline,] #MarriageInline]
     exclude = ('address',)
 
 
