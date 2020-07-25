@@ -25,17 +25,20 @@ def index(request):
         total_amount_donated = round(total_amount_donated, 2)
     except TypeError:
         total_amount_donated = 0
+
     donors_with_total_donations = Donor.objects.annotate(max_value=Sum('donation__donation_amount'))
-    max_donor = donors_with_total_donations[0]
-    #Guarantee the first donor's record total donation value is not None.
-    max_donor.max_value = max_donor.max_value if (max_donor.max_value is not None) else 0.00
-    for donor in donors_with_total_donations[1:]:
-        try:
-            if donor.max_value > max_donor.max_value:
-                max_donor = donor
-        except TypeError:
-            #Error handling for case where donor has not donated yet.
-            pass
+    try:
+        max_donor = donors_with_total_donations[0]
+        max_donor.max_value = max_donor.max_value if (max_donor.max_value is not None) else 0.00
+        for donor in donors_with_total_donations[1:]:
+            try:
+                if donor.max_value > max_donor.max_value:
+                    max_donor = donor
+            except TypeError:
+                #Error handling for case where donor has not donated yet.
+                pass
+    except IndexError:
+        max_donor = 'No donors'
 
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
