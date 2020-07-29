@@ -2,15 +2,12 @@
   
   {% block hero %}
   
-    <div class='row justify-content-sm-center'>
-        <div class='col-md-12'>
-          <div class="jumbotron jumbotron-fluid gradient-jumbotron">
-              <div class="container">
-                <h1 class="display-4">{% block hero_title %}Generic Title{% endblock hero_title %}  </h1>
-                <p class="lead">{% block hero_text %}Base Generic Text{% endblock hero_text %}</p>
-              </div>
+        <div class="jumbotron jumbotron-fluid ">
+            <div class="container text-center" style='display:inline-block;'>
+              <h1 class="display-4">{% block hero_title %}Generic Title{% endblock hero_title %}  </h1>
+              <p class="lead">{% block hero_text %}Base Generic Text{% endblock hero_text %}</p>
             </div>
-        </div>
+        </div> 
 
     {% endblock hero %}
   

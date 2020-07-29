@@ -25,6 +25,16 @@ body {
 }
 
 .gradient-jumbotron {
-    background: rgb(148,140,116);
-    background: linear-gradient(90deg, rgba(148,140,116,1) 0%, rgba(255,255,255,1) 100%);
+    background: rgb(73,98,182);
+    background: linear-gradient(90deg, rgba(73,98,182,1) 25%, rgba(230,78,73,1) 75%);
 }
+
+
+.newmorphism-white{
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow:  20px 20px 60px #d9d9d9, 
+                 -20px -20px 60px #ffffff;
+
+           }
+

@@ -13,10 +13,10 @@
 <body>
   <div class='container-fluid'>
   {% block sidebar %}
-  <nav class="navbar navbar-expand-lg navbar" style='background-color:#244474'>
+  <nav class="navbar navbar-expand-lg navbar" style='background-color:#555'>
     <div class='container-fluid'>
       <div class='navbar-header'>
-        <a class="navbar-brand" href="/" style="color: #948c74;"><i class="fas fa-vote-yea"></i> Tony Navarrete</a>
+        <a class="navbar-brand" href="/" style="color: #ffff;"><i class="fas fa-vote-yea"></i> Campaign Data Demo</a>
         <button class="navbar-dark navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,27 +36,27 @@
           <li class="nav-item">
             <a class="nav-link" href="{%url 'organizations' %}"><i class="fas fa-users"></i> All organizations</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'donation-create' %}">Add donation</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'donor-create' %}">Add donor</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'organization-create' %}">Add organization</a>
+          <li class="nav-item dropdown" style='color:#4285f4;'>
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-7" data-toggle="dropdown" aria-haspopup="false"
+            aria-expanded="false"><i class="far fa-plus-square"></i> Add a record</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink-7">
+              <a class="dropdown-item" href="{% url 'donation-create' %}">Add donation</a>
+              <a class="dropdown-item" href="{% url 'donor-create' %}">Add donor</a>
+              <a class="dropdown-item" href="{% url 'organization-create' %}">Add organization</a>
+            </div>
           </li>
         </ul>
         <ul class="nav nav-fill justify-content-end">
           {% if user.is_authenticated %}
           <li class="navbar-nav ml-auto">
-            <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+            <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
           </li>     
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a>
+            <a class="nav-link" href="{% url 'login'%}?next={{request.path}}"><i class="fas fa-sign-in-alt"></i> Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Register</a>
+            <a class="nav-link" href="{% url 'login'%}?next={{request.path}}"><i class="fas fa-user-plus"></i> Register</a>
           </li>
           {% endif %}
         </ul>
@@ -93,7 +93,7 @@
 
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="#"> Brett Beeching</a>
+    <a href="#"> Campaign-Data-Analytics</a>
   </div>
   <!-- Copyright -->
 
@@ -110,6 +110,16 @@
   $(document).ready(function() {
   $('a.active').removeClass('active');
   $('a[href="' + location.pathname + '"]').closest('a').addClass('active'); 
+
 });
 </script>
 </html>
+
+
+
+
+
+
+
+
+
